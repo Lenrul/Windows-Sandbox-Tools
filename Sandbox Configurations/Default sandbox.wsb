@@ -1,0 +1,52 @@
+<!-- Default Sample Configuration -->
+<Configuration>
+    <!-- System Ram in MB -->
+    <MemoryInMB>4096</MemoryInMB>
+
+    <!-- Enable Virtual GPU  (Enable{Default}/Disable) [Enabling virtualized GPU can potentially increase the attack surface of the sandbox.]-->
+     <vGPU>Enable</vGPU>
+
+    <!-- Networking (Enable{Default}/Disable) [Enabling networking can expose untrusted applications to the internal network.]-->
+    <Networking>Enable</Networking>
+
+    <!-- Audio Input (Enable{Default}/Disable) [Enables audio input to the sandbox. There may be security implications of exposing host audio input to the container.]-->
+    <AudioInput>Enable</AudioInput>
+
+    <!-- Video Input (Enable/Disable{Default}) [Enables video input to the sandbox. There may be security implications of exposing host video input to the container.]-->
+    <VideoInput>Disable</VideoInput>
+
+    <!-- Clipboard (Enable{Default}/Disable)[Enables sharing of the host clipboard with the sandbox.]-->
+    <ClipboardRedirection>Enable</ClipboardRedirection>
+
+    <!-- Printer redirection(Enable/Disable{Default}) [Enables sharing of host printers into the sandbox.]-->
+    <PrinterRedirection>Disable</PrinterRedirection>
+
+    <!-- Protected Client (Enable/Disable{Default}) [Sandbox adds a new layer of security boundary by running inside an AppContainer Isolation execution environment. AppContainer Isolation provides Credential, Device, File, Network, Process, and Window isolation.] -->
+    <ProtectedClient>Enable</ProtectedClient>
+
+    <!-- Volume Mapping (currently mapped Desktop and Downloads to Sandbox as ReadOnly) [Files and folders mapped from the host can be compromised by apps in the sandbox or potentially affect the host. Changes made during a Sandbox session to a mapped folder with write-permissions will persist after a Sandbox is disposed.]-->
+    
+    <!--
+    <MappedFolders>
+        <MappedFolder>
+            <HostFolder>C:\Users\Lenrui\Desktop</HostFolder>
+            <SandboxFolder>C:\Users\WDAGUtilityAccount\Desktop</SandboxFolder>
+            <ReadOnly>true</ReadOnly>
+        </MappedFolder>
+        <MappedFolder>
+            <HostFolder>C:\Users\Lenrui\Downloads</HostFolder>
+            <SandboxFolder>C:\Users\WDAGUtilityAccount\Downloads</SandboxFolder>
+            <ReadOnly>true</ReadOnly>
+        </MappedFolder>
+    </MappedFolders>
+    -->
+
+    <!-- Run's the Program when Sandbox First Opens. -->
+
+    <!--
+    <LogonCommand>
+        <Command>notepad.exe</Command>
+    </LogonCommand>
+    -->
+    
+</Configuration>

@@ -1,0 +1,92 @@
+<!-- Default Sample Configuration -->
+<Configuration>
+    <!-- System Ram in MB -->
+    <MemoryInMB>8192</MemoryInMB>
+
+    <!-- Enable Virtual GPU  (Enable{Default}/Disable) [Enabling virtualized GPU can potentially increase the attack surface of the sandbox.]-->
+     <vGPU>Enable</vGPU>
+
+    <!-- Networking (Enable{Default}/Disable) [Enabling networking can expose untrusted applications to the internal network.]-->
+    <Networking>Enable</Networking>
+
+    <!-- Audio Input (Enable{Default}/Disable) [Enables audio input to the sandbox. There may be security implications of exposing host audio input to the container.]-->
+    <AudioInput>Enable</AudioInput>
+
+    <!-- Video Input (Enable/Disable{Default}) [Enables video input to the sandbox. There may be security implications of exposing host video input to the container.]-->
+    <VideoInput>Disable</VideoInput>
+
+    <!-- Clipboard (Enable{Default}/Disable)[Enables sharing of the host clipboard with the sandbox.]-->
+    <ClipboardRedirection>Enable</ClipboardRedirection>
+
+    <!-- Printer redirection(Enable/Disable{Default}) [Enables sharing of host printers into the sandbox.]-->
+    <PrinterRedirection>Disable</PrinterRedirection>
+
+    <!-- Protected Client (Enable/Disable{Default}) [Sandbox adds a new layer of security boundary by running inside an AppContainer Isolation execution environment. AppContainer Isolation provides Credential, Device, File, Network, Process, and Window isolation.] -->
+    <ProtectedClient>Enable</ProtectedClient>
+
+    <!-- Volume Mapping (currently mapped Desktop and Downloads to Sandbox as ReadOnly) [Files and folders mapped from the host can be compromised by apps in the sandbox or potentially affect the host. Changes made during a Sandbox session to a mapped folder with write-permissions will persist after a Sandbox is disposed.]-->
+    <MappedFolders>
+<!-- Desktop Folder
+        <MappedFolder>
+            <HostFolder>C:\Users\Lenrui\Desktop</HostFolder>
+            <SandboxFolder>C:\Users\WDAGUtilityAccount\Desktop</SandboxFolder>
+            <ReadOnly>true</ReadOnly>
+        </MappedFolder>
+        -->
+
+<!-- Mutable Downloads Folder-->
+        <MappedFolder>
+            <HostFolder>C:\Users\Lenrui\Downloads</HostFolder>
+            <SandboxFolder>C:\Users\WDAGUtilityAccount\Documents\Downloads</SandboxFolder>
+            <ReadOnly>false</ReadOnly>
+        </MappedFolder>
+<!-- Sandbox Tools Folder-->
+        <MappedFolder>
+            <HostFolder>D:\GitHub\Windows-Sandbox-Tools</HostFolder>
+            <SandboxFolder>C:\GitHub\Windows-Sandbox-Tools</SandboxFolder>
+            <ReadOnly>true</ReadOnly>
+        </MappedFolder>
+<!-- Mutable Sandbox Folder-->
+        <MappedFolder>
+            <HostFolder>D:\SandBox</HostFolder>
+            <SandboxFolder>C:\SandBox</SandboxFolder>
+            <ReadOnly>false</ReadOnly>
+        </MappedFolder>
+<!-- Mutable Unity Folder-->
+        <MappedFolder>
+            <HostFolder>D:\Unity</HostFolder>
+            <SandboxFolder>C:\Users\WDAGUtilityAccount\Documents\Unity</SandboxFolder>
+            <ReadOnly>false</ReadOnly>
+        </MappedFolder>
+<!-- Mutable Desktop Folder-->
+        <MappedFolder>
+            <HostFolder>C:\Users\Lenrui\Desktop</HostFolder>
+            <SandboxFolder>C:\Users\WDAGUtilityAccount\Documents\Desktop</SandboxFolder>
+            <ReadOnly>false</ReadOnly>
+        </MappedFolder>
+<!-- Mutable Pictures Folder-->
+        <MappedFolder>
+            <HostFolder>C:\Users\Lenrui\OneDrive\Pictures</HostFolder>
+            <SandboxFolder>C:\Users\WDAGUtilityAccount\Documents\Pictures</SandboxFolder>
+            <ReadOnly>false</ReadOnly>
+        </MappedFolder>
+    </MappedFolders>
+
+    <!-- Run's the Program when Sandbox First Opens. -->
+    <LogonCommand>
+        <Command>powershell -executionpolicy Bypass -file "C:\GitHub\Windows-Sandbox-Tools\General Scripts\Set Theme Dark Mode.ps1"</Command>
+        <Command>powershell -executionpolicy Bypass -file "C:\GitHub\Windows-Sandbox-Tools\Startup Scripts\SandboxStartup.ps1" -launchingSandbox</Command>
+        <Command>powershell -executionpolicy Bypass -file "C:\GitHub\Windows-Sandbox-Tools\Installer Scripts\Install VC Redist.ps1"</Command>
+        <Command>powershell -executionpolicy Bypass -file "C:\GitHub\Windows-Sandbox-Tools\Installer Scripts\Install-Winget.ps1"</Command>
+        <Command>powershell -executionpolicy Bypass -file "C:\GitHub\Windows-Sandbox-Tools\Installer Scripts\Install-Microsoft-Store.ps1"</Command>
+        <Command>winget install Photos Notepad Paint VSCode --silent --accept-package-agreements</Command>
+    </LogonCommand>
+</Configuration>
+
+<!-- Other Settings Examples
+	- See: https://learn.microsoft.com/en-us/windows/security/application-security/application-isolation/windows-sandbox/windows-sandbox-configure-using-wsb-file
+	- Note: Anything outside <configuration> tags don't apply
+	
+	Other Notes:
+		- It seems you can include multiple <command> entries within LogonCommand
+-->

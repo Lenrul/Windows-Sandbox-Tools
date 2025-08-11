@@ -5,7 +5,7 @@ Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\P
 Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" -Name "SystemUsesLightTheme" -Value 0
 
 # Set the Wallpaper
-$wallpaperPath = "C:\Windows\Web\Wallpaper\Windows\img19.jpg"
+$wallpaperPath = "C:\GitHub\Windows-Sandbox-Tools\General Scripts\wallpaper.png"
 $code = @'
 using System.Runtime.InteropServices;
 public class Wallpaper {
@@ -22,7 +22,7 @@ $SEND_CHANGE = 0x02
 [Wallpaper]::SystemParametersInfo($SPI_SETDESKWALLPAPER, 0, $wallpaperPath, ($UPDATE_INI_FILE -bor $SEND_CHANGE))
 
 # Restart Explorer to apply changes
-Write-Host "Restarting Explorer..."
-Stop-Process -Name explorer -Force
-Start-Process explorer
-Write-Host "Dark mode enabled and wallpaper updated successfully! Explorer has been restarted."
+#Write-Host "Restarting Explorer..."
+#Stop-Process -Name explorer -Force
+#Start-Process explorer
+#Write-Host "Dark mode enabled and wallpaper updated successfully! Explorer has been restarted."

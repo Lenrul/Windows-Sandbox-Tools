@@ -7,6 +7,11 @@ param(
 
 #Set-PSDebug -Trace 1
 
+# autohides the taskbar
+$RegPath = "HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StuckRects3"; 
+$v=(Get-ItemProperty -Path $RegPath).Settings; 
+$v[8]=3; Set-ItemProperty -Path $RegPath -Name Settings -Value $v; 
+
 # Change context menu to old style
 reg.exe add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
 
