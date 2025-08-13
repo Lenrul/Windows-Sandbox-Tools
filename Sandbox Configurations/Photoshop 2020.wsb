@@ -26,14 +26,12 @@
 
     <!-- Volume Mapping (currently mapped Desktop and Downloads to Sandbox as ReadOnly) [Files and folders mapped from the host can be compromised by apps in the sandbox or potentially affect the host. Changes made during a Sandbox session to a mapped folder with write-permissions will persist after a Sandbox is disposed.]-->
     <MappedFolders>
-<!-- Desktop Folder
+<!-- Mutable Desktop Folder -->
         <MappedFolder>
-            <HostFolder>C:\Users\Lenrui\Desktop</HostFolder>
+            <HostFolder>D:\SandBox\Desktop</HostFolder>
             <SandboxFolder>C:\Users\WDAGUtilityAccount\Desktop</SandboxFolder>
-            <ReadOnly>true</ReadOnly>
+            <ReadOnly>false</ReadOnly>
         </MappedFolder>
-        -->
-
 <!-- Mutable Downloads Folder-->
         <MappedFolder>
             <HostFolder>C:\Users\Lenrui\Downloads</HostFolder>
@@ -52,6 +50,12 @@
             <SandboxFolder>C:\SandBox</SandboxFolder>
             <ReadOnly>false</ReadOnly>
         </MappedFolder>
+<!-- Mutable Adobe Sandbox Folder-->
+        <MappedFolder>
+            <HostFolder>D:\SandBox\Adobe</HostFolder>
+            <SandboxFolder>C:\Users\WDAGUtilityAccount\AppData\Roaming\Adobe</SandboxFolder>
+            <ReadOnly>false</ReadOnly>
+        </MappedFolder>
 <!-- Mutable Unity Folder-->
         <MappedFolder>
             <HostFolder>D:\Unity</HostFolder>
@@ -68,6 +72,12 @@
         <MappedFolder>
             <HostFolder>C:\Users\Lenrui\OneDrive\Pictures</HostFolder>
             <SandboxFolder>C:\Users\WDAGUtilityAccount\Documents\Pictures</SandboxFolder>
+            <ReadOnly>false</ReadOnly>
+        </MappedFolder>
+<!-- Mutable Pictures Folder-->
+        <MappedFolder>
+            <HostFolder>C:\Users\Lenrui\OneDrive\Documents</HostFolder>
+            <SandboxFolder>C:\Users\WDAGUtilityAccount\Documents\Documents</SandboxFolder>
             <ReadOnly>false</ReadOnly>
         </MappedFolder>
     </MappedFolders>
@@ -92,3 +102,4 @@
 	Other Notes:
 		- It seems you can include multiple <command> entries within LogonCommand
 -->
+C:\Users\Lenrui\OneDrive\Documents
